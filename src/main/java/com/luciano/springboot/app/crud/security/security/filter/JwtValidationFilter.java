@@ -58,8 +58,10 @@ public class JwtValidationFilter extends BasicAuthenticationFilter {
 
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, null, authorities);
             SecurityContextHolder .getContext().setAuthentication(authenticationToken);
+            System.out.println("Token authorities: " + authorities);
+            System.out.println("Username: " + username);
             chain.doFilter(request, response);
-        } catch (JwtException e) {
+        } catch (Exception e) {
             Map<String, String> body = new HashMap<>();
             body.put("error", e.getMessage());
             body.put("message", "El token JWT es invalido!");

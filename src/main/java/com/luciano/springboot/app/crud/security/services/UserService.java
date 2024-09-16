@@ -44,12 +44,12 @@ public class UserService implements IUserService {
             throw new UserConflictException("User already exists");
         }
 
-        Optional<Role> optionalRole = roleRepository.findByName("USER");
+        Optional<Role> optionalRole = roleRepository.findByName("ROLE_USER");
         List<Role> roles = new ArrayList<>();
         optionalRole.ifPresent(roles::add);
 
         if (user.isAdmin()) {
-            Optional<Role> optionalRoleAdmin = roleRepository.findByName("ADMIN");
+            Optional<Role> optionalRoleAdmin = roleRepository.findByName("ROLE_ADMIN");
             optionalRoleAdmin.ifPresent(roles::add);
         }
 
